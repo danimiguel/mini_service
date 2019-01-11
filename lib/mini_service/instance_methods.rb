@@ -23,17 +23,17 @@ module MiniService
     end
 
     def argument_allowed?(key)
-      alwd_args = allowed_arguments
-      return true if alwd_args.empty?
+      @alwd_args ||= allowed_arguments
+      return true if @alwd_args.empty?
 
-      alwd_args.include? key
+      @alwd_args.include? key
     end
 
     def allowed_arguments
       alwd_args = []
       alwd_args << letd_args if letd_args_defined?
       alwd_args << reqd_args if reqd_args_defined?
-      alwd_args
+      alwd_args.flatten
     end
 
     def missing_arguments?(args)

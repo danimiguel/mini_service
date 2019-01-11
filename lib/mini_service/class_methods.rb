@@ -1,6 +1,9 @@
+require 'active_support'
 module MiniService
   module ClassMethods
     def call(*args)
+      raise MiniService::ArgumentsNotHashError unless args[0].is_a?(Hash)
+
       new(*args).call
     end
 
