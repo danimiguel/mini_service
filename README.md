@@ -6,12 +6,7 @@ mantain and less prone to
 errors.
 
 ## Usage
-You can use `rails generate mini_service YourServiceName` to create a template
-file inside your app/services
-directory with the provided name.
-
-Otherwise you can create or modify your own services by inheriting
-from `MiniService::Mini` class.
+You can create your own services by inheriting from `MiniService::Base` class.
 
 Your `MiniServices` should be used via their `call` method, providing arguments
 in a hash, like
@@ -24,7 +19,7 @@ you've given.
 
 So for example a service like this:
 ```ruby
-class ExampleService < MiniService::Mini
+class ExampleService < MiniService::Base
   private
 
   def perform
@@ -49,7 +44,7 @@ You can declare them using `mini_reqs` and `mini_lets` methods on your class'
 definition, giving them each an array of symbols.
 
 ```ruby
-class ExampleService < MiniService::Mini
+class ExampleService < MiniService::Base
   mini_requires %i[a1 a2]
   mini_allows %i[a3 a4]
 
@@ -89,9 +84,13 @@ mentioned in the Next Changes
 section.
 
 ## Next Changes
+Adding a simple generator for the service, that works by using
+`rails generate mini_service YourServiceName`
+to create a template file inside your app/services
+directory with the provided name.
 
-Testing the whole service, maybe provide a more complete generator, provide
-further options for variables declarations.
+Also, testing the whole service.
 
 ## License
-The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+The gem is available as open source under the terms of the
+[MIT License](https://opensource.org/licenses/MIT).
